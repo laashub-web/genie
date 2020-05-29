@@ -111,5 +111,6 @@ public class ResourceSelectorScript<R> extends ManagedScript {
         final Set<R> resources,
         final JobRequest jobRequest
     ) {
+        // NOOP
     }
 }

@@ -310,23 +310,21 @@ public class ScriptManager {
 
             final Compilable compilable = (Compilable) engine;
 
-            final InputStream scriptInputStream;
-            try {
-                scriptInputStream = scriptResource.getInputStream();
+            try (final InputStream scriptInputStream = scriptResource.getInputStream()) {
+                final InputStreamReader reader = new InputStreamReader(scriptInputStream, StandardCharsets.UTF_8);
+                final CompiledScript compiledScript;
+                try {
+                    compiledScript = compilable.compile(reader);
+                } catch (final ScriptException e) {
+                    throw new ScriptLoadingException("Failed to compile script: " + scriptUriString, e);
+                }
+
+                log.info("Successfully compiled: " + scriptUriString);
+                return compiledScript;
+
             } catch (IOException e) {
                 throw new ScriptLoadingException("Failed to read script", e);
             }
-
-            final InputStreamReader reader = new InputStreamReader(scriptInputStream, StandardCharsets.UTF_8);
-            final CompiledScript compiledScript;
-            try {
-                compiledScript = compilable.compile(reader);
-            } catch (final ScriptException e) {
-                throw new ScriptLoadingException("Failed to compile script: " + scriptUriString, e);
-            }
-
-            log.info("Successfully compiled: " + scriptUriString);
-            return compiledScript;
         }
     }
 }

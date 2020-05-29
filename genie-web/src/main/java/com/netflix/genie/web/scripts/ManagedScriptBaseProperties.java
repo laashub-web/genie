@@ -45,5 +45,6 @@ public class ManagedScriptBaseProperties {
      * Protected constructor this class is meant to be extended.
      */
     protected ManagedScriptBaseProperties() {
+        // NOOP
     }
 }

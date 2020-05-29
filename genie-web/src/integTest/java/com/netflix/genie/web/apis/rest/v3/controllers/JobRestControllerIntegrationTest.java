@@ -1758,7 +1758,7 @@ public class JobRestControllerIntegrationTest extends RestControllerIntegrationT
     }
 
     private void linkAllEntities() throws Exception {
-        final List<String> apps = new ArrayList<>();
+        final List<String> apps = Lists.newArrayList();
         apps.add(APP1_ID);
         apps.add(APP2_ID);
 

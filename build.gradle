@@ -310,7 +310,11 @@ configure(javaProjects) {
 
     pmd {
         toolVersion = "6.21.0"
+        ignoreFailures = false
+        // rulePriority = 5
         ignoreFailures = true
+        ruleSetFiles = files("$rootProject.projectDir/config/pmd/pmd.xml")
+        ruleSets = []
     }
 
     tasks.withType(Pmd) {

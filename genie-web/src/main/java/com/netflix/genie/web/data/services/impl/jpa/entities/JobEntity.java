@@ -451,13 +451,6 @@ public class JobEntity extends BaseEntity implements
     private String notifiedJobStatus;
 
     /**
-     * Default Constructor.
-     */
-    public JobEntity() {
-        super();
-    }
-
-    /**
      * Before a job is created create the job search string.
      */
     @PrePersist

@@ -211,6 +211,7 @@ public final class EntityV3DtoConverters {
         );
     }
 
+    @SuppressWarnings("PMD.UnusedPrivateMethod") // PMD bug, this method is used
     private static <B extends CommonDTO.Builder, E extends BaseProjection> void setDtoMetadata(
         final B builder,
         final E entity
