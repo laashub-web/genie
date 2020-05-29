@@ -32,7 +32,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -476,7 +475,7 @@ public class ClusterClientIntegrationTest extends GenieClientIntegrationTestBase
         clusterClient.createCluster(cluster);
 
         // Test add Commands to cluster
-        final List<String> initialCommands = new ArrayList<>();
+        final List<String> initialCommands = Lists.newArrayList();
         initialCommands.add("foo");
         initialCommands.add("bar");
         initialCommands.add("pi");
@@ -497,7 +496,7 @@ public class ClusterClientIntegrationTest extends GenieClientIntegrationTestBase
         Assert.assertEquals("foo", commands.get(0).getId().orElseThrow(IllegalArgumentException::new));
         Assert.assertEquals("bar", commands.get(1).getId().orElseThrow(IllegalArgumentException::new));
 
-        final List<String> updatedCommands = new ArrayList<>();
+        final List<String> updatedCommands = Lists.newArrayList();
         updatedCommands.add("foo");
         updatedCommands.add("pi");
 

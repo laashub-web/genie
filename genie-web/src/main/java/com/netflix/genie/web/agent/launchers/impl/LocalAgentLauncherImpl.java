@@ -32,7 +32,6 @@ import com.netflix.genie.web.introspection.GenieWebRpcInfo;
 import com.netflix.genie.web.properties.LocalAgentLauncherProperties;
 import com.netflix.genie.web.util.ExecutorFactory;
 import com.netflix.genie.web.util.UNIXUtils;
-import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecuteResultHandler;
@@ -66,7 +65,6 @@ public class LocalAgentLauncherImpl implements AgentLauncher {
     private final PersistenceService persistenceService;
     private final LocalAgentLauncherProperties launcherProperties;
     private final ExecutorFactory executorFactory;
-    private final MeterRegistry registry;
     private final Executor sharedExecutor;
     private final int rpcPort;
 
@@ -79,22 +77,19 @@ public class LocalAgentLauncherImpl implements AgentLauncher {
      * @param launcherProperties The properties from the configuration that control agent behavior
      * @param executorFactory    A {@link ExecutorFactory} to create {@link org.apache.commons.exec.Executor}
      *                           instances
-     * @param registry           Metrics repository
      */
     public LocalAgentLauncherImpl(
         final GenieWebHostInfo hostInfo,
         final GenieWebRpcInfo rpcInfo,
         final DataServices dataServices,
         final LocalAgentLauncherProperties launcherProperties,
-        final ExecutorFactory executorFactory,
-        final MeterRegistry registry
+        final ExecutorFactory executorFactory
     ) {
         this.hostname = hostInfo.getHostname();
         this.rpcPort = rpcInfo.getRpcPort();
         this.persistenceService = dataServices.getPersistenceService();
         this.launcherProperties = launcherProperties;
         this.executorFactory = executorFactory;
-        this.registry = registry;
         this.sharedExecutor = this.executorFactory.newInstance(false);
     }
 
@@ -174,6 +169,7 @@ public class LocalAgentLauncherImpl implements AgentLauncher {
             final String debugOutputPath =
                 System.getProperty(SystemUtils.JAVA_IO_TMPDIR, "/tmp") + "/agent-job-" + jobId + ".txt";
             try {
+                @SuppressWarnings("PMD.CloseResource") // Responsibility to close is delegated
                 final FileOutputStream fileOutput = new FileOutputStream(debugOutputPath, false);
                 executor.setStreamHandler(new PumpStreamHandler(fileOutput));
             } catch (FileNotFoundException e) {

@@ -15,6 +15,7 @@
  */
 package com.netflix.genie.web.data.services.impl.jpa.queries.specifications;
 
+import com.google.common.collect.Lists;
 import com.netflix.genie.web.data.services.impl.jpa.entities.ClusterEntity;
 import com.netflix.genie.web.data.services.impl.jpa.entities.CommandEntity;
 import com.netflix.genie.web.data.services.impl.jpa.entities.JobEntity;
@@ -26,7 +27,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -86,7 +86,7 @@ public final class JpaJobSpecs {
         @Nullable final String grouping,
         @Nullable final String groupingInstance
     ) {
-        final List<Predicate> predicates = new ArrayList<>();
+        final List<Predicate> predicates = Lists.newArrayList();
         if (StringUtils.isNotBlank(id)) {
             predicates.add(JpaSpecificationUtils.getStringLikeOrEqualPredicate(cb, root.get(JobEntity_.uniqueId), id));
         }

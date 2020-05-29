@@ -50,7 +50,6 @@ public class AgentConnectionTrackingServiceImpl implements AgentConnectionTracki
     protected static final int STREAM_EXPIRATION_PERIOD = 10_000; // TODO: Make configurable
     protected static final int CLEANUP_TASK_PERIOD = 2_000; // TODO: Make configurable
     private final AgentRoutingService agentRoutingService;
-    private final TaskScheduler taskScheduler;
     private final ConcurrentMap<String, JobStreamsRecord> jobStreamRecordsMap = Maps.newConcurrentMap();
     private final Supplier<Instant> timeSupplier;
 
@@ -74,10 +73,9 @@ public class AgentConnectionTrackingServiceImpl implements AgentConnectionTracki
         final Supplier<Instant> timeSupplier
     ) {
         this.agentRoutingService = agentRoutingService;
-        this.taskScheduler = taskScheduler;
         this.timeSupplier = timeSupplier;
 
-        this.taskScheduler.scheduleAtFixedRate(this::cleanupTask, CLEANUP_TASK_PERIOD);
+        taskScheduler.scheduleAtFixedRate(this::cleanupTask, CLEANUP_TASK_PERIOD);
     }
 
     /**

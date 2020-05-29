@@ -17,6 +17,7 @@
  */
 package com.netflix.genie.web.jobs;
 
+import com.google.common.collect.Lists;
 import com.netflix.genie.common.dto.JobRequest;
 import com.netflix.genie.common.exceptions.GenieException;
 import com.netflix.genie.common.external.dtos.v4.Application;
@@ -29,7 +30,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -46,7 +46,7 @@ public final class JobExecutionEnvironment {
     private final JobRequest jobRequest;
     private final Cluster cluster;
     private final Command command;
-    private final List<Application> applications = new ArrayList<>();
+    private final List<Application> applications = Lists.newArrayList();
     private final int memory;
     private final File jobWorkingDir;
 
@@ -83,7 +83,7 @@ public final class JobExecutionEnvironment {
         private final JobRequest bJobRequest;
         private final Cluster bCluster;
         private final Command bCommand;
-        private final List<Application> bApplications = new ArrayList<>();
+        private final List<Application> bApplications = Lists.newArrayList();
         private final int bMemory;
         private final File bJobWorkingDir;
 

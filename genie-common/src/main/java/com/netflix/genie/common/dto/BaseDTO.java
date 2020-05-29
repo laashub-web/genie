@@ -114,9 +114,6 @@ public abstract class BaseDTO implements Serializable {
         private Instant bCreated;
         private Instant bUpdated;
 
-        protected Builder() {
-        }
-
         /**
          * Set the id for the resource.
          *

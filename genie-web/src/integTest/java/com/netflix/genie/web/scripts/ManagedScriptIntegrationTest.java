@@ -169,7 +169,7 @@ class ManagedScriptIntegrationTest {
             final ManagedScriptBaseProperties properties,
             final MeterRegistry registry
         ) {
-            super(scriptManager, properties, registry);
+            super(scriptManager, properties);
         }
 
         void evaluate() throws ScriptNotConfiguredException, ScriptExecutionException {

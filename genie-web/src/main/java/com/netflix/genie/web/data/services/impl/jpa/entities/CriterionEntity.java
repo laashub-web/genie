@@ -194,20 +194,4 @@ public class CriterionEntity extends IdEntity {
             this.tags.addAll(tags);
         }
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(final Object o) {
-        return super.equals(o);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }

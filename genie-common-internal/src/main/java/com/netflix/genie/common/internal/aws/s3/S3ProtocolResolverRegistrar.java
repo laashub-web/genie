@@ -62,6 +62,7 @@ public class S3ProtocolResolverRegistrar implements ApplicationContextAware {
      * instances of {@link SimpleStorageProtocolResolver}.
      */
     @Override
+    @SuppressWarnings("PMD.CloseResource") // Not closing ApplicationContext is the right thing to do
     public void setApplicationContext(final ApplicationContext applicationContext) throws BeansException {
         if (applicationContext instanceof ConfigurableApplicationContext) {
             final ConfigurableApplicationContext configurableApplicationContext

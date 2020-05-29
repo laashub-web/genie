@@ -33,7 +33,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -108,14 +107,7 @@ public class ClusterEntity extends BaseEntity implements ClusterCommandsProjecti
     )
     @OrderColumn(name = "command_order", nullable = false)
     @ToString.Exclude
-    private List<CommandEntity> commands = new ArrayList<>();
-
-    /**
-     * Default Constructor.
-     */
-    public ClusterEntity() {
-        super();
-    }
+    private List<CommandEntity> commands = Lists.newArrayList();
 
     /**
      * Set all the files associated as configuration files for this cluster.
@@ -211,21 +203,5 @@ public class ClusterEntity extends BaseEntity implements ClusterCommandsProjecti
      */
     public void removeAllCommands() {
         Lists.newArrayList(this.commands).forEach(this::removeCommand);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(final Object o) {
-        return super.equals(o);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 }

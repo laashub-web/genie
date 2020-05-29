@@ -33,11 +33,17 @@ import java.net.URI;
 @Getter
 @Setter
 @Validated
-public abstract class ManagedScriptBaseProperties {
+public class ManagedScriptBaseProperties {
     protected static final String SCRIPTS_PREFIX = "genie.scripts";
     protected static final String SOURCE_PROPERTY_SUFFIX = ".source";
     @Nullable
     private URI source;
     private long timeout = 5_000L;
     private boolean autoLoadEnabled = true;
+
+    /**
+     * Protected constructor this class is meant to be extended.
+     */
+    protected ManagedScriptBaseProperties() {
+    }
 }

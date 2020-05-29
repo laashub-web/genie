@@ -41,6 +41,7 @@ import java.util.List;
 @Slf4j
 class ExecCommand implements AgentCommand {
 
+    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"}) //TODO This should be added to context and used
     private final ExecCommandArguments execCommandArguments;
     private final JobExecutionStateMachine stateMachine;
     private final KillService killService;

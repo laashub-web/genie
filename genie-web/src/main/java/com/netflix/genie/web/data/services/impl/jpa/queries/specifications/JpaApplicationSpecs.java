@@ -15,6 +15,7 @@
  */
 package com.netflix.genie.web.data.services.impl.jpa.queries.specifications;
 
+import com.google.common.collect.Lists;
 import com.netflix.genie.web.data.services.impl.jpa.entities.ApplicationEntity;
 import com.netflix.genie.web.data.services.impl.jpa.entities.ApplicationEntity_;
 import com.netflix.genie.web.data.services.impl.jpa.entities.TagEntity;
@@ -27,7 +28,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -63,7 +63,7 @@ public final class JpaApplicationSpecs {
         @Nullable final String type
     ) {
         return (final Root<ApplicationEntity> root, final CriteriaQuery<?> cq, final CriteriaBuilder cb) -> {
-            final List<Predicate> predicates = new ArrayList<>();
+            final List<Predicate> predicates = Lists.newArrayList();
             if (StringUtils.isNotBlank(name)) {
                 predicates.add(
                     JpaSpecificationUtils.getStringLikeOrEqualPredicate(cb, root.get(ApplicationEntity_.name), name)

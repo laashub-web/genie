@@ -45,7 +45,6 @@ import org.mockito.Mockito;
 import org.springframework.dao.DuplicateKeyException;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -226,12 +225,12 @@ class JpaPersistenceServiceImplClustersTest {
         Mockito.when(this.jpaClusterRepository.findByUniqueId(id)).thenReturn(Optional.empty());
         Assertions
             .assertThatExceptionOfType(GenieNotFoundException.class)
-            .isThrownBy(() -> this.service.addCommandsForCluster(id, new ArrayList<>()));
+            .isThrownBy(() -> this.service.addCommandsForCluster(id, Lists.newArrayList()));
     }
 
     @Test
     void testAddCommandsForClusterCommandDoesntExist() {
-        final List<String> commandIds = new ArrayList<>();
+        final List<String> commandIds = Lists.newArrayList();
         final String commandId = UUID.randomUUID().toString();
         commandIds.add(commandId);
         final ClusterEntity clusterEntity = Mockito.mock(ClusterEntity.class);
@@ -285,12 +284,12 @@ class JpaPersistenceServiceImplClustersTest {
         Mockito.when(this.jpaClusterRepository.findByUniqueId(id)).thenReturn(Optional.empty());
         Assertions
             .assertThatExceptionOfType(GenieNotFoundException.class)
-            .isThrownBy(() -> this.service.setCommandsForCluster(id, new ArrayList<>()));
+            .isThrownBy(() -> this.service.setCommandsForCluster(id, Lists.newArrayList()));
     }
 
     @Test
     void testSetCommandsForClusterCommandDoesntExist() {
-        final List<String> commandIds = new ArrayList<>();
+        final List<String> commandIds = Lists.newArrayList();
         final String commandId = UUID.randomUUID().toString();
         commandIds.add(commandId);
         final ClusterEntity cluster

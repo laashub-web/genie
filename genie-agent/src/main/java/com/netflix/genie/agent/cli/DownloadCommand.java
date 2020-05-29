@@ -22,6 +22,7 @@ import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.beust.jcommander.ParametersDelegate;
 import com.google.common.collect.Lists;
+import com.netflix.genie.agent.cli.argumentvalidators.StringValidator;
 import com.netflix.genie.agent.execution.exceptions.DownloadException;
 import com.netflix.genie.agent.execution.services.DownloadService;
 import lombok.Getter;
@@ -99,7 +100,7 @@ class DownloadCommand implements AgentCommand {
         @Parameter(
             names = {"--sources"},
             description = "URLs of files to download",
-            validateWith = ArgumentValidators.StringValidator.class,
+            validateWith = StringValidator.class,
             converter = ArgumentConverters.URIConverter.class,
             variableArity = true
         )
@@ -108,7 +109,7 @@ class DownloadCommand implements AgentCommand {
 
         @Parameter(
             names = {"--destinationDirectory"},
-            validateWith = ArgumentValidators.StringValidator.class,
+            validateWith = StringValidator.class,
             converter = ArgumentConverters.FileConverter.class
         )
         @Getter

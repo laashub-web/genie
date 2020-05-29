@@ -114,6 +114,7 @@ public class AgentRoutingServiceCuratorDiscoveryImpl implements AgentRoutingServ
         registry.gaugeMapSize(REGISTERED_AGENTS_GAUGE_NAME, EMPTY_TAG_SET, this.registeredAgentsMap);
     }
 
+    @SuppressWarnings("PMD.UnusedFormalParameter") // Keep same signature as listener so this can be method reference
     private void handleConnectionStateChange(final CuratorFramework client, final ConnectionState newState) {
 
         this.registry.counter(
@@ -136,6 +137,7 @@ public class AgentRoutingServiceCuratorDiscoveryImpl implements AgentRoutingServ
 
             default:
                 log.debug("Zookeeper/Curator connection state changed to: {}", newState);
+                break;
         }
     }
 

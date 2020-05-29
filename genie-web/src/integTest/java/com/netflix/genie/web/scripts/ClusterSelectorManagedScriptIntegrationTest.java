@@ -131,8 +131,7 @@ class ClusterSelectorManagedScriptIntegrationTest {
         this.scriptProperties = new ClusterSelectorScriptProperties();
         this.clusterSelectorScript = new ClusterSelectorManagedScript(
             scriptManager,
-            this.scriptProperties,
-            meterRegistry
+            this.scriptProperties
         );
     }
 

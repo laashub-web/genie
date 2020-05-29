@@ -100,13 +100,6 @@ public class ApplicationEntity extends BaseEntity {
     private Set<CommandEntity> commands = new HashSet<>();
 
     /**
-     * Default constructor.
-     */
-    public ApplicationEntity() {
-        super();
-    }
-
-    /**
      * Get the type of this application.
      *
      * @return The type as an Optional in case it's null
@@ -161,21 +154,5 @@ public class ApplicationEntity extends BaseEntity {
         if (commands != null) {
             this.commands.addAll(commands);
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(final Object o) {
-        return super.equals(o);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 }

@@ -26,7 +26,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.validation.ConstraintViolationException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -186,7 +185,7 @@ class ClusterEntityTest extends EntityTestBase {
         one.setUniqueId("one");
         final CommandEntity two = new CommandEntity();
         two.setUniqueId("two");
-        final List<CommandEntity> commands = new ArrayList<>();
+        final List<CommandEntity> commands = Lists.newArrayList();
         commands.add(one);
         commands.add(two);
         this.c.setCommands(commands);
@@ -289,7 +288,7 @@ class ClusterEntityTest extends EntityTestBase {
         one.setUniqueId("one");
         final CommandEntity two = new CommandEntity();
         two.setUniqueId("two");
-        final List<CommandEntity> commands = new ArrayList<>();
+        final List<CommandEntity> commands = Lists.newArrayList();
         commands.add(one);
         commands.add(two);
         this.c.setCommands(commands);

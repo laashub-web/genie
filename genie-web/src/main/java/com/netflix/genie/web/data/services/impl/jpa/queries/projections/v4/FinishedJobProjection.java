@@ -84,6 +84,7 @@ public interface FinishedJobProjection extends BaseProjection {
      *
      * @return Optional of the metadata json node represented as a string
      */
+    @Override
     Optional<String> getMetadata();
 
     /**

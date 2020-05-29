@@ -82,8 +82,7 @@ class ExecutionModeFilterScriptIntegrationTest {
         this.executionModeFilterScript = new ExecutionModeFilterScript(
             scriptManager,
             scriptProperties,
-            objectMapper,
-            meterRegistry
+            objectMapper
         );
     }
 

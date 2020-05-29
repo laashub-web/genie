@@ -19,6 +19,7 @@ package com.netflix.genie.client;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
+import com.google.common.collect.Lists;
 import com.google.common.io.ByteStreams;
 import com.netflix.genie.client.apis.JobService;
 import com.netflix.genie.client.configs.GenieNetworkConfiguration;
@@ -48,7 +49,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -146,7 +146,7 @@ public class JobClient {
         }
 
         final MediaType attachmentMediaType = MediaType.parse(APPLICATION_OCTET_STREAM);
-        final ArrayList<MultipartBody.Part> attachmentFiles = new ArrayList<>();
+        final List<MultipartBody.Part> attachmentFiles = Lists.newArrayList();
 
         for (Map.Entry<String, InputStream> entry : attachments.entrySet()) {
 

@@ -41,9 +41,9 @@ import java.util.stream.Collectors;
  */
 public final class JsonUtils {
     /**
-     * Protected constructor for a utility class.
+     * Private constructor for a utility class.
      */
-    protected JsonUtils() {
+    private JsonUtils() {
     }
 
     /**

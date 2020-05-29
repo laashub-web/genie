@@ -17,6 +17,7 @@
  */
 package com.netflix.genie.web.jobs.workflow.impl;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.netflix.genie.common.dto.JobExecution;
 import com.netflix.genie.common.dto.JobRequest;
@@ -43,7 +44,6 @@ import java.io.Writer;
 import java.lang.reflect.Field;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -63,7 +63,6 @@ public class JobKickoffTask extends GenieBaseTask {
     private final boolean isUserCreationEnabled;
     private final Executor executor;
     private final String hostname;
-    private final RetryTemplate retryTemplate;
     private final JobDirectoryManifestCreatorService jobDirectoryManifestCreatorService;
 
     /**
@@ -90,8 +89,8 @@ public class JobKickoffTask extends GenieBaseTask {
         this.executor = executor;
         this.hostname = hostname;
         this.jobDirectoryManifestCreatorService = jobDirectoryManifestCreatorService;
-        this.retryTemplate = new RetryTemplate();
-        this.retryTemplate.setBackOffPolicy(new ExponentialBackOffPolicy());
+        final RetryTemplate retryTemplate = new RetryTemplate();
+        retryTemplate.setBackOffPolicy(new ExponentialBackOffPolicy());
     }
 
     /**
@@ -107,6 +106,7 @@ public class JobKickoffTask extends GenieBaseTask {
             final String jobWorkingDirectory = jobExecEnv.getJobWorkingDir().getCanonicalPath();
             final JobRequest jobRequest = jobExecEnv.getJobRequest();
             final String user = jobRequest.getUser();
+            @SuppressWarnings("PMD.CloseResource") // Not closed here
             final Writer writer = (Writer) context.get(JobConstants.WRITER_KEY);
             final String jobId = jobRequest
                 .getId()
@@ -129,7 +129,7 @@ public class JobKickoffTask extends GenieBaseTask {
                     throw new GenieServerException("Could not create user " + user, ioexception);
                 }
             }
-            final List<String> command = new ArrayList<>();
+            final List<String> command = Lists.newArrayList();
 
             // If the OS is linux use setsid to launch the process so that the entire process tree
             // is launched in process group id which is the same as the pid of the parent process

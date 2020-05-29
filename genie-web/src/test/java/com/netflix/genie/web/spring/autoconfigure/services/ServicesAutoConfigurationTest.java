@@ -17,6 +17,7 @@
  */
 package com.netflix.genie.web.spring.autoconfigure.services;
 
+import com.google.common.collect.Lists;
 import com.netflix.genie.common.exceptions.GenieException;
 import com.netflix.genie.common.external.util.GenieObjectMapper;
 import com.netflix.genie.common.internal.services.JobDirectoryManifestCreatorService;
@@ -60,7 +61,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -185,7 +185,7 @@ public class ServicesAutoConfigurationTest {
         Mockito.when(dataServices.getPersistenceService()).thenReturn(persistenceService);
         final GenieEventBus genieEventBus = Mockito.mock(GenieEventBus.class);
         final Resource resource = Mockito.mock(Resource.class);
-        final List<WorkflowTask> workflowTasks = new ArrayList<>();
+        final List<WorkflowTask> workflowTasks = Lists.newArrayList();
 
         Assert.assertNotNull(
             this.servicesAutoConfiguration.jobSubmitterService(

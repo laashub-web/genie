@@ -35,7 +35,6 @@ import java.util.Set;
  */
 @Slf4j
 class CommandFactory {
-    private final List<AgentCommandArguments> agentCommandArgumentsBeans;
     private final ApplicationContext applicationContext;
     private final Map<String, Class<? extends AgentCommand>> commandMap = Maps.newHashMap();
 
@@ -43,7 +42,6 @@ class CommandFactory {
         final List<AgentCommandArguments> agentCommandArguments,
         final ApplicationContext applicationContext
     ) {
-        this.agentCommandArgumentsBeans = agentCommandArguments;
         this.applicationContext = applicationContext;
 
         agentCommandArguments.forEach(

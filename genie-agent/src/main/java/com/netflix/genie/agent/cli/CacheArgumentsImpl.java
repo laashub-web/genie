@@ -19,6 +19,7 @@ package com.netflix.genie.agent.cli;
 
 import com.beust.jcommander.Parameter;
 import com.google.common.annotations.VisibleForTesting;
+import com.netflix.genie.agent.cli.argumentvalidators.StringValidator;
 import lombok.Getter;
 
 import java.io.File;
@@ -39,7 +40,7 @@ class CacheArgumentsImpl implements ArgumentDelegates.CacheArguments {
         names = {"--cacheDirectory", "--cache-directory"},
         description = "Location of the Genie Agent dependencies cache",
         converter = ArgumentConverters.FileConverter.class,
-        validateWith = ArgumentValidators.StringValidator.class
+        validateWith = StringValidator.class
     )
     private File cacheDirectory = new File(DEFAULT_CACHE_PATH);
 }

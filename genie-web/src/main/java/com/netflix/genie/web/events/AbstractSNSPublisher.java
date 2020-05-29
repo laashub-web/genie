@@ -32,7 +32,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.Instant;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -79,7 +78,7 @@ abstract class AbstractSNSPublisher {
         this.mapper = mapper;
     }
 
-    protected void publishEvent(final EventType eventType, final HashMap<String, Object> eventDetailsMap) {
+    protected void publishEvent(final EventType eventType, final Map<String, Object> eventDetailsMap) {
         final String topic = this.properties.getTopicARN();
 
         if (StringUtils.isBlank(topic)) {

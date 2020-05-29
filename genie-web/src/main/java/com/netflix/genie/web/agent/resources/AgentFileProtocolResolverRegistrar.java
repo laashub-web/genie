@@ -51,6 +51,7 @@ public class AgentFileProtocolResolverRegistrar implements ApplicationContextAwa
     public void setApplicationContext(final ApplicationContext applicationContext) throws BeansException {
         if (applicationContext instanceof ConfigurableApplicationContext) {
 
+            @SuppressWarnings("PMD.CloseResource") // Not appropriate to close here
             final ConfigurableApplicationContext configurableApplicationContext
                 = (ConfigurableApplicationContext) applicationContext;
 

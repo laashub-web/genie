@@ -22,6 +22,7 @@ import com.beust.jcommander.Parameters;
 import com.beust.jcommander.ParametersDelegate;
 import com.google.protobuf.util.Timestamps;
 import com.netflix.genie.agent.AgentMetadata;
+import com.netflix.genie.agent.cli.argumentvalidators.StringValidator;
 import com.netflix.genie.proto.PingRequest;
 import com.netflix.genie.proto.PingServiceGrpc;
 import com.netflix.genie.proto.PongResponse;
@@ -114,7 +115,7 @@ class PingCommand implements AgentCommand {
         @Parameter(
             names = {"--requestId"},
             description = "Request id (defaults to UUID)",
-            validateWith = ArgumentValidators.StringValidator.class
+            validateWith = StringValidator.class
         )
         @Getter
         private String requestId;

@@ -121,6 +121,7 @@ public class FetchingCacheServiceImplTest {
         final CountDownLatch lockAquisitionAttempted = new CountDownLatch(2);
 
         //A mock lock backed by a reentrant lock guarding the resource
+        @SuppressWarnings("PMD.CloseResource") // Not a real lock
         final CloseableLock resourceLock = Mockito.mock(CloseableLock.class);
         Mockito.doAnswer(invocation -> {
             lockAquisitionAttempted.countDown();
@@ -252,7 +253,9 @@ public class FetchingCacheServiceImplTest {
         final CountDownLatch lockAquisitionAttempted = new CountDownLatch(2);
 
         final ReentrantLock lockBackingMock = new ReentrantLock();
+
         //A mock lock backed by a reentant lock guarding the resource
+        @SuppressWarnings("PMD.CloseResource") // Not a real lock
         final CloseableLock resourceLock = Mockito.mock(CloseableLock.class);
         Mockito.doAnswer(invocation -> {
             lockAquisitionAttempted.countDown();
@@ -411,6 +414,7 @@ public class FetchingCacheServiceImplTest {
         final ReentrantLock lockBackingMock = new ReentrantLock();
 
         //A mock lock backed by a reentant lock guarding the resource
+        @SuppressWarnings("PMD.CloseResource") // Not a real lock
         final CloseableLock resourceLock = Mockito.mock(CloseableLock.class);
         Mockito.doAnswer(invocation -> {
             lockAcquisitionAttempted.countDown();
@@ -549,6 +553,7 @@ public class FetchingCacheServiceImplTest {
         final CountDownLatch deletionSuccessVerified = new CountDownLatch(1);
 
         //A mock lock backed by a reentant lock guarding the resource
+        @SuppressWarnings("PMD.CloseResource") // Not a real lock
         final CloseableLock resourceLock = Mockito.mock(CloseableLock.class);
         Mockito.doAnswer(invocation -> {
 

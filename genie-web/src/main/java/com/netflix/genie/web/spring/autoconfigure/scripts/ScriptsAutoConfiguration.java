@@ -103,7 +103,6 @@ public class ScriptsAutoConfiguration {
      *
      * @param scriptManager    script manager
      * @param scriptProperties script properties
-     * @param meterRegistry    meter registry
      * @return a {@link ClusterSelectorManagedScript}
      */
     @Bean
@@ -111,13 +110,11 @@ public class ScriptsAutoConfiguration {
     @ConditionalOnProperty(value = ClusterSelectorScriptProperties.SOURCE_PROPERTY)
     ClusterSelectorManagedScript clusterSelectorScript(
         final ScriptManager scriptManager,
-        final ClusterSelectorScriptProperties scriptProperties,
-        final MeterRegistry meterRegistry
+        final ClusterSelectorScriptProperties scriptProperties
     ) {
         return new ClusterSelectorManagedScript(
             scriptManager,
-            scriptProperties,
-            meterRegistry
+            scriptProperties
         );
     }
 
@@ -126,7 +123,6 @@ public class ScriptsAutoConfiguration {
      *
      * @param scriptManager                          script manager
      * @param commandSelectorManagedScriptProperties script properties
-     * @param meterRegistry                          meter registry
      * @return a {@link CommandSelectorManagedScript}
      */
     @Bean
@@ -134,13 +130,11 @@ public class ScriptsAutoConfiguration {
     @ConditionalOnProperty(value = CommandSelectorManagedScriptProperties.SOURCE_PROPERTY)
     CommandSelectorManagedScript commandSelectormanagedScript(
         final ScriptManager scriptManager,
-        final CommandSelectorManagedScriptProperties commandSelectorManagedScriptProperties,
-        final MeterRegistry meterRegistry
+        final CommandSelectorManagedScriptProperties commandSelectorManagedScriptProperties
     ) {
         return new CommandSelectorManagedScript(
             scriptManager,
-            commandSelectorManagedScriptProperties,
-            meterRegistry
+            commandSelectorManagedScriptProperties
         );
     }
 
@@ -149,7 +143,6 @@ public class ScriptsAutoConfiguration {
      *
      * @param scriptManager    script manager
      * @param scriptProperties script properties
-     * @param meterRegistry    meter registry
      * @return a {@link ExecutionModeFilterScript}
      */
     @Bean
@@ -157,14 +150,12 @@ public class ScriptsAutoConfiguration {
     @ConditionalOnProperty(value = ExecutionModeFilterScriptProperties.SOURCE_PROPERTY)
     ExecutionModeFilterScript executionModeFilterScript(
         final ScriptManager scriptManager,
-        final ExecutionModeFilterScriptProperties scriptProperties,
-        final MeterRegistry meterRegistry
+        final ExecutionModeFilterScriptProperties scriptProperties
     ) {
         return new ExecutionModeFilterScript(
             scriptManager,
             scriptProperties,
-            GenieObjectMapper.getMapper(),
-            meterRegistry
+            GenieObjectMapper.getMapper()
         );
     }
 

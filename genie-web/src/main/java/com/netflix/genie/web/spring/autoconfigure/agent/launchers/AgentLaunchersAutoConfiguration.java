@@ -24,7 +24,6 @@ import com.netflix.genie.web.introspection.GenieWebHostInfo;
 import com.netflix.genie.web.introspection.GenieWebRpcInfo;
 import com.netflix.genie.web.properties.LocalAgentLauncherProperties;
 import com.netflix.genie.web.util.ExecutorFactory;
-import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -64,26 +63,23 @@ public class AgentLaunchersAutoConfiguration {
      * @param dataServices       The {@link DataServices} instance to use
      * @param launcherProperties The properties related to launching an agent locally
      * @param executorFactory    The {@link ExecutorFactory} to use to launch agent processes
-     * @param registry           The {@link MeterRegistry} to register metrics
      * @return A {@link LocalAgentLauncherImpl} instance
      */
     @Bean
     @ConditionalOnMissingBean(AgentLauncher.class)
     public LocalAgentLauncherImpl localAgentLauncher(
-        final GenieWebHostInfo genieWebHostInfo,
-        final GenieWebRpcInfo genieWebRpcInfo,
-        final DataServices dataServices,
-        final LocalAgentLauncherProperties launcherProperties,
-        final ExecutorFactory executorFactory,
-        final MeterRegistry registry
+            final GenieWebHostInfo genieWebHostInfo,
+            final GenieWebRpcInfo genieWebRpcInfo,
+            final DataServices dataServices,
+            final LocalAgentLauncherProperties launcherProperties,
+            final ExecutorFactory executorFactory
     ) {
         return new LocalAgentLauncherImpl(
             genieWebHostInfo,
             genieWebRpcInfo,
             dataServices,
             launcherProperties,
-            executorFactory,
-            registry
+            executorFactory
         );
     }
 }

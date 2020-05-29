@@ -611,6 +611,7 @@ public interface PersistenceService {
      * @deprecated To be removed at completion of agent migration
      */
     @Deprecated
+    @SuppressWarnings("PMD.UnnecessaryFullyQualifiedName") // This is harder to read without FQN
     void createJob(
         @NotNull com.netflix.genie.common.dto.JobRequest jobRequest,
         @NotNull com.netflix.genie.common.dto.JobMetadata jobMetadata,

@@ -22,7 +22,6 @@ import com.netflix.genie.common.external.dtos.v4.JobRequest;
 import com.netflix.genie.web.exceptions.checked.ResourceSelectionException;
 import com.netflix.genie.web.properties.ClusterSelectorScriptProperties;
 import com.netflix.genie.web.selectors.ClusterSelector;
-import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
@@ -47,17 +46,14 @@ public class ClusterSelectorManagedScript extends ResourceSelectorScript<Cluster
 
     /**
      * Constructor.
-     *
-     * @param scriptManager script manager
+     *  @param scriptManager script manager
      * @param properties    script manager properties
-     * @param registry      meter registry
      */
     public ClusterSelectorManagedScript(
         final ScriptManager scriptManager,
-        final ClusterSelectorScriptProperties properties,
-        final MeterRegistry registry
+        final ClusterSelectorScriptProperties properties
     ) {
-        super(scriptManager, properties, registry);
+        super(scriptManager, properties);
     }
 
     /**

@@ -66,6 +66,7 @@ public class HealthCheckMetricsAspect {
         + "execution(org.springframework.boot.actuate.health.Health getHealth(..))"
     )
     public void healthIndicatorGetHealth() {
+        //NOOP -- this is a pointcut
     }
 
     /**

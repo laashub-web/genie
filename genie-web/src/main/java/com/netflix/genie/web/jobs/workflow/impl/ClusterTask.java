@@ -81,6 +81,7 @@ public class ClusterTask extends GenieBaseTask {
             final String genieDir = jobWorkingDirectory
                 + JobConstants.FILE_PATH_DELIMITER
                 + JobConstants.GENIE_PATH_VAR;
+            @SuppressWarnings("PMD.CloseResource") // Not closed here
             final Writer writer = (Writer) context.get(JobConstants.WRITER_KEY);
             log.info("Starting Cluster Task for job {}", jobExecEnv.getJobRequest().getId().orElse(NO_ID_FOUND));
 

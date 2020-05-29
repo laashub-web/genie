@@ -17,7 +17,6 @@
  */
 package com.netflix.genie.web.data.services.impl.jpa.queries.projections.v4;
 
-import com.netflix.genie.common.external.dtos.v4.JobSpecification;
 import com.netflix.genie.web.data.services.impl.jpa.entities.FileEntity;
 
 import java.util.Optional;
@@ -25,7 +24,7 @@ import java.util.Set;
 
 /**
  * A projection for fields from an entity which are needed for an
- * {@link JobSpecification.ExecutionResource}.
+ * {@link com.netflix.genie.common.external.dtos.v4.JobSpecification.ExecutionResource}.
  *
  * @author tgianos
  * @since 4.0.0

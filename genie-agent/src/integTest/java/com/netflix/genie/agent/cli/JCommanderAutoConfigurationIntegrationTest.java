@@ -98,7 +98,7 @@ public class JCommanderAutoConfigurationIntegrationTest {
                 try {
                     return (String) f.get(null);
                 } catch (IllegalAccessException e) {
-                    throw new RuntimeException("Failed to get value for field " + f.getName());
+                    throw new RuntimeException("Failed to get value for field " + f.getName(), e);
                 }
             })
             .collect(Collectors.toList());

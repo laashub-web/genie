@@ -66,6 +66,7 @@ public class JobFailureAndKillHandlerLogicTask extends GenieBaseTask {
             final String jobId = jobExecEnv.getJobRequest().getId().orElse(NO_ID_FOUND);
             log.info("Starting Job Failure and Kill Handler Task for job {}", jobId);
 
+            @SuppressWarnings("PMD.CloseResource") // Not closed here
             final Writer writer = (Writer) context.get(JobConstants.WRITER_KEY);
 
             // Append logic for handling job kill signal

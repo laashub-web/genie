@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
@@ -32,8 +33,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -181,9 +180,9 @@ public class JobRequest extends ExecutionEnvironmentDTO {
      */
     public static class Builder extends ExecutionEnvironmentDTO.Builder<Builder> {
 
-        private final List<ClusterCriteria> bClusterCriterias = new ArrayList<>();
-        private final Set<String> bCommandCriteria = new HashSet<>();
-        private final List<String> bApplications = new ArrayList<>();
+        private final List<ClusterCriteria> bClusterCriterias = Lists.newArrayList();
+        private final Set<String> bCommandCriteria = Sets.newHashSet();
+        private final List<String> bApplications = Lists.newArrayList();
         private String bCommandArgs;
         private String bGroup;
         private boolean bDisableLogArchival;

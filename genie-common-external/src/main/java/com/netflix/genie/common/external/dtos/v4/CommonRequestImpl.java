@@ -95,12 +95,6 @@ abstract class CommonRequestImpl implements CommonRequest, Serializable {
         private ExecutionEnvironment bResources;
 
         /**
-         * Constructor.
-         */
-        Builder() {
-        }
-
-        /**
          * Set the id being requested for the resource. Will be rejected if the ID is already used by another resource
          * of the same type. If not included a GUID will be supplied.
          *

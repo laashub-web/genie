@@ -439,9 +439,9 @@ public final class JobConstants {
     public static final String GENIE_SETUP_ERROR_FILE_NAME = "setup_failed.txt";
 
     /**
-     * Protected constructor for utility class.
+     * Private constructor for utility class.
      */
-    protected JobConstants() {
+    private JobConstants() {
     }
 
     /**

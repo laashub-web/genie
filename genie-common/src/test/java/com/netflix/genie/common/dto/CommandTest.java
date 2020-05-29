@@ -25,7 +25,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -42,7 +41,7 @@ class CommandTest {
     private static final String USER = UUID.randomUUID().toString();
     private static final String VERSION = UUID.randomUUID().toString();
     private static final long CHECK_DELAY = 12380L;
-    private static final ArrayList<String> EXECUTABLE_AND_ARGS = Lists.newArrayList("foo-cli", "--verbose");
+    private static final List<String> EXECUTABLE_AND_ARGS = Lists.newArrayList("foo-cli", "--verbose");
     private static final String EXECUTABLE = StringUtils.join(EXECUTABLE_AND_ARGS, " ");
     private static final int MEMORY = 10_255;
 
@@ -259,7 +258,7 @@ class CommandTest {
      */
     @Test
     void canBuildWithConflictingExecutableFields() {
-        final ArrayList<String> expectedExecutable = Lists.newArrayList("exec", "arg1", "arg2");
+        final List<String> expectedExecutable = Lists.newArrayList("exec", "arg1", "arg2");
 
         final Command command
             = new Command.Builder(NAME, USER, VERSION, CommandStatus.ACTIVE, EXECUTABLE_AND_ARGS, CHECK_DELAY)

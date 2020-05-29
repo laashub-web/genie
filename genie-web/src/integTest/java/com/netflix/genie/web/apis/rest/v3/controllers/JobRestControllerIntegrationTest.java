@@ -76,7 +76,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -149,7 +148,7 @@ public class JobRestControllerIntegrationTest extends RestControllerIntegrationT
     private static final String CMD1_USER = "genie";
     private static final String CMD1_VERSION = "1.0";
     private static final String CMD1_EXECUTABLE = "/bin/bash";
-    private static final ArrayList<String> CMD1_EXECUTABLE_AND_ARGS = Lists.newArrayList(CMD1_EXECUTABLE);
+    private static final List<String> CMD1_EXECUTABLE_AND_ARGS = Lists.newArrayList(CMD1_EXECUTABLE);
     private static final String CLUSTER1_ID = "cluster1";
     private static final String CLUSTER1_NAME = "Local laptop";
     private static final String CLUSTER1_USER = "genie";
@@ -164,7 +163,7 @@ public class JobRestControllerIntegrationTest extends RestControllerIntegrationT
     private static final String GB18030_TXT = "GB18030.txt";
     private static final List<String> SLEEP_AND_ECHO_COMMAND_ARGS =
         Lists.newArrayList("-c", "'sleep 1 && echo hello world'");
-    private static final ArrayList<String> SLEEP_60_COMMAND_ARGS = Lists.newArrayList("-c", "'sleep 60'");
+    private static final List<String> SLEEP_60_COMMAND_ARGS = Lists.newArrayList("-c", "'sleep 60'");
 
     private final boolean agentExecution;
     private ResourceLoader resourceLoader;
@@ -1626,7 +1625,7 @@ public class JobRestControllerIntegrationTest extends RestControllerIntegrationT
 
         final String jobId = UUID.randomUUID().toString();
 
-        final ArrayList<String> paths = Lists.newArrayList(
+        final List<String> paths = Lists.newArrayList(
             "",
             "/request",
             "/execution",

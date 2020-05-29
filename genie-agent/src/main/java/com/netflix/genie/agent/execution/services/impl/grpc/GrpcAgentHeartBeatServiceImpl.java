@@ -142,7 +142,7 @@ class GrpcAgentHeartBeatServiceImpl implements AgentHeartBeatService {
         }
     }
 
-    private static class ResponseObserver implements StreamObserver<com.netflix.genie.proto.ServerHeartBeat> {
+    private static class ResponseObserver implements StreamObserver<ServerHeartBeat> {
         private final GrpcAgentHeartBeatServiceImpl grpcAgentHeartBeatService;
 
         ResponseObserver(final GrpcAgentHeartBeatServiceImpl grpcAgentHeartBeatService) {

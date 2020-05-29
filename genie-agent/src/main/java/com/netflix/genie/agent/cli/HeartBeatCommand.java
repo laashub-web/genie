@@ -69,7 +69,7 @@ class HeartBeatCommand implements AgentCommand {
             try {
                 wait(TimeUnit.MILLISECONDS.convert(heartBeatCommandArguments.getRunDuration(), TimeUnit.SECONDS));
             } catch (InterruptedException e) {
-                throw new RuntimeException("Interrupted");
+                throw new RuntimeException("Interrupted", e);
             }
         }
 

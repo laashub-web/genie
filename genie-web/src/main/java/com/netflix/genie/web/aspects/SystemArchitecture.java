@@ -35,6 +35,7 @@ public class SystemArchitecture {
      */
     @Pointcut("within(com.netflix.genie.web.apis.rest.v3.controllers..*)")
     public void inResourceLayer() {
+        //NOOP -- this is a pointcut
     }
 
     /**
@@ -44,6 +45,7 @@ public class SystemArchitecture {
      */
     @Pointcut("within(com.netflix.genie.web.services..*)")
     public void inServiceLayer() {
+        //NOOP -- this is a pointcut
     }
 
     /**
@@ -53,6 +55,7 @@ public class SystemArchitecture {
      */
     @Pointcut("within(com.netflix.genie.web.data.services..*)")
     public void inDataLayer() {
+        //NOOP -- this is a pointcut
     }
 
     /**
@@ -62,6 +65,7 @@ public class SystemArchitecture {
      */
     @Pointcut("execution(* com.netflix.genie.web.apis.rest.v3.controllers.*.*(..))")
     public void resourceOperation() {
+        //NOOP -- this is a pointcut
     }
 
     /**
@@ -71,6 +75,7 @@ public class SystemArchitecture {
      */
     @Pointcut("execution(* com.netflix.genie.web.services.*.*(..))")
     public void serviceOperation() {
+        //NOOP -- this is a pointcut
     }
 
     /**
@@ -80,5 +85,6 @@ public class SystemArchitecture {
      */
     @Pointcut("execution(* com.netflix.genie.web.data.services.impl.jpa.*.*(..))")
     public void dataOperation() {
+        //NOOP -- this is a pointcut
     }
 }

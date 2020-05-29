@@ -22,6 +22,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.netflix.genie.agent.cli.argumentvalidators.S3URIValidator;
+import com.netflix.genie.agent.cli.argumentvalidators.URIListValidator;
+import com.netflix.genie.agent.cli.argumentvalidators.URIValidator;
 import com.netflix.genie.common.external.dtos.v4.Criterion;
 import com.netflix.genie.common.external.util.GenieObjectMapper;
 import lombok.Getter;
@@ -60,7 +63,7 @@ class JobRequestArgumentsImpl implements ArgumentDelegates.JobRequestArguments {
     @Parameter(
         names = {"--archiveLocationPrefix", "--archive-location-prefix"},
         description = "Prefix for job folder archival location (Currently only s3 URIs are supported)",
-        validateWith = ArgumentValidators.S3URIValidator.class
+        validateWith = S3URIValidator.class
     )
     private String archiveLocationPrefix;
 
@@ -165,7 +168,7 @@ class JobRequestArgumentsImpl implements ArgumentDelegates.JobRequestArguments {
         names = {"--jobConfiguration", "--job-configuration"},
         description = "URI or path of a job-level configuration file to attach, can be repeated",
         converter = ArgumentConverters.UriOrLocalPathConverter.class,
-        validateValueWith = ArgumentValidators.URIListValidator.class,
+        validateValueWith = URIListValidator.class,
         splitter = NoopParameterSplitter.class
     )
     private List<String> jobConfigurations = Lists.newArrayList();
@@ -174,7 +177,7 @@ class JobRequestArgumentsImpl implements ArgumentDelegates.JobRequestArguments {
         names = {"--jobDependency", "--job-dependency"},
         description = "URI or path of a job-level dependency file to attach, can be repeated",
         converter = ArgumentConverters.UriOrLocalPathConverter.class,
-        validateValueWith = ArgumentValidators.URIListValidator.class,
+        validateValueWith = URIListValidator.class,
         splitter = NoopParameterSplitter.class
     )
     private List<String> jobDependencies = Lists.newArrayList();
@@ -183,7 +186,7 @@ class JobRequestArgumentsImpl implements ArgumentDelegates.JobRequestArguments {
         names = {"--jobSetup", "--job-setup"},
         description = "URI or path of a job-level setup file to attach. The file is sourced during job setup",
         converter = ArgumentConverters.UriOrLocalPathConverter.class,
-        validateValueWith = ArgumentValidators.URIValidator.class
+        validateValueWith = URIValidator.class
     )
     private String jobSetup;
 

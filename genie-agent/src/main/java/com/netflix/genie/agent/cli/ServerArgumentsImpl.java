@@ -19,6 +19,7 @@ package com.netflix.genie.agent.cli;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.validators.PositiveInteger;
+import com.netflix.genie.agent.cli.argumentvalidators.StringValidator;
 import lombok.Getter;
 
 /**
@@ -30,14 +31,14 @@ class ServerArgumentsImpl implements ArgumentDelegates.ServerArguments {
     @Parameter(
         names = {"--serverHost", "--server-host"},
         description = "Server hostname or address",
-        validateWith = ArgumentValidators.StringValidator.class
+        validateWith = StringValidator.class
     )
     private String serverHost = "localhost";
 
     @Parameter(
         names = {"--serverPort", "--server-port"},
         description = "Server port",
-        validateWith = ArgumentValidators.PortValidator.class
+        validateWith = PositiveInteger.class
     )
     private int serverPort = 7979;
 

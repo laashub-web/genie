@@ -15,6 +15,7 @@
  */
 package com.netflix.genie.web.data.services.impl.jpa.queries.specifications;
 
+import com.google.common.collect.Lists;
 import com.netflix.genie.common.external.dtos.v4.Criterion;
 import com.netflix.genie.web.data.services.impl.jpa.entities.ClusterEntity;
 import com.netflix.genie.web.data.services.impl.jpa.entities.ClusterEntity_;
@@ -30,7 +31,6 @@ import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -66,7 +66,7 @@ public final class JpaClusterSpecs {
         @Nullable final Instant maxUpdateTime
     ) {
         return (final Root<ClusterEntity> root, final CriteriaQuery<?> cq, final CriteriaBuilder cb) -> {
-            final List<Predicate> predicates = new ArrayList<>();
+            final List<Predicate> predicates = Lists.newArrayList();
             if (StringUtils.isNotBlank(name)) {
                 predicates.add(
                     JpaSpecificationUtils.getStringLikeOrEqualPredicate(cb, root.get(ClusterEntity_.name), name)

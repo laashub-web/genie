@@ -34,7 +34,6 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotBlank;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -167,7 +166,7 @@ final class GenieClientUtils {
             return Lists.newArrayList();
         }
 
-        final List<T> searchList = new ArrayList<>();
+        final List<T> searchList = Lists.newArrayList();
         for (final JsonNode searchResultJson : searchResultsJson) {
             final T searchResult = GenieClientUtils.treeToValue(searchResultJson, clazz);
             searchList.add(searchResult);

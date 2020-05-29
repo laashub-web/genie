@@ -81,6 +81,7 @@ public class JobTask extends GenieBaseTask {
             final JobExecutionEnvironment jobExecEnv
                 = (JobExecutionEnvironment) context.get(JobConstants.JOB_EXECUTION_ENV_KEY);
             final String jobWorkingDirectory = jobExecEnv.getJobWorkingDir().getCanonicalPath();
+            @SuppressWarnings("PMD.CloseResource") // Not closed here
             final Writer writer = (Writer) context.get(JobConstants.WRITER_KEY);
             final String jobId = jobExecEnv
                 .getJobRequest()

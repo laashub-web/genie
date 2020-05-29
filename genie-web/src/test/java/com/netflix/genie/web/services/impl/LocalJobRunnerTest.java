@@ -51,7 +51,6 @@ import org.springframework.core.io.Resource;
 import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -97,7 +96,7 @@ public class LocalJobRunnerTest {
         final WorkflowTask task1 = Mockito.mock(WorkflowTask.class);
         this.task2 = Mockito.mock(WorkflowTask.class);
 
-        final List<WorkflowTask> jobWorkflowTasks = new ArrayList<>();
+        final List<WorkflowTask> jobWorkflowTasks = Lists.newArrayList();
         jobWorkflowTasks.add(task1);
         jobWorkflowTasks.add(this.task2);
 

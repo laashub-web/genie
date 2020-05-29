@@ -146,7 +146,6 @@ import javax.validation.constraints.Size;
 import java.net.URI;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -288,7 +287,7 @@ public class JpaPersistenceServiceImpl implements PersistenceService {
         if (tags != null) {
             tagEntities = this.tagRepository.findByTagIn(tags);
             if (tagEntities.size() != tags.size()) {
-                return new PageImpl<>(new ArrayList<>(), page, 0);
+                return new PageImpl<>(Lists.newArrayList(), page, 0);
             }
         } else {
             tagEntities = null;
@@ -441,7 +440,7 @@ public class JpaPersistenceServiceImpl implements PersistenceService {
         if (tags != null) {
             tagEntities = this.tagRepository.findByTagIn(tags);
             if (tagEntities.size() != tags.size()) {
-                return new PageImpl<>(new ArrayList<>(), page, 0);
+                return new PageImpl<>(Lists.newArrayList(), page, 0);
             }
         } else {
             tagEntities = null;
@@ -558,7 +557,7 @@ public class JpaPersistenceServiceImpl implements PersistenceService {
                 clusterEntity.addCommand(this.getCommandEntity(commandId));
             }
         } catch (final NotFoundException e) {
-            throw new GenieNotFoundException(e.getMessage());
+            throw new GenieNotFoundException(e.getMessage(), e);
         }
     }
 
@@ -601,14 +600,14 @@ public class JpaPersistenceServiceImpl implements PersistenceService {
         }
         try {
             final ClusterEntity clusterEntity = this.getClusterEntity(id);
-            final List<CommandEntity> commandEntities = new ArrayList<>();
+            final List<CommandEntity> commandEntities = Lists.newArrayList();
             for (final String commandId : commandIds) {
                 commandEntities.add(this.getCommandEntity(commandId));
             }
 
             clusterEntity.setCommands(commandEntities);
         } catch (final NotFoundException e) {
-            throw new GenieNotFoundException(e.getMessage());
+            throw new GenieNotFoundException(e.getMessage(), e);
         }
     }
 
@@ -620,7 +619,7 @@ public class JpaPersistenceServiceImpl implements PersistenceService {
         try {
             this.getClusterEntity(id).removeAllCommands();
         } catch (final NotFoundException e) {
-            throw new GenieNotFoundException(e.getMessage());
+            throw new GenieNotFoundException(e.getMessage(), e);
         }
     }
 
@@ -632,7 +631,7 @@ public class JpaPersistenceServiceImpl implements PersistenceService {
         try {
             this.getClusterEntity(id).removeCommand(this.getCommandEntity(cmdId));
         } catch (final NotFoundException e) {
-            throw new GenieNotFoundException(e.getMessage());
+            throw new GenieNotFoundException(e.getMessage(), e);
         }
     }
 
@@ -744,7 +743,7 @@ public class JpaPersistenceServiceImpl implements PersistenceService {
         if (tags != null) {
             tagEntities = this.tagRepository.findByTagIn(tags);
             if (tagEntities.size() != tags.size()) {
-                return new PageImpl<>(new ArrayList<>(), page, 0);
+                return new PageImpl<>(Lists.newArrayList(), page, 0);
             }
         } else {
             tagEntities = null;
@@ -1360,7 +1359,7 @@ public class JpaPersistenceServiceImpl implements PersistenceService {
             contentQuery.where(whereClause);
 
             final Sort sort = page.getSort();
-            final List<Order> orders = new ArrayList<>();
+            final List<Order> orders = Lists.newArrayList();
             sort.iterator().forEachRemaining(
                 order -> {
                     if (order.isAscending()) {

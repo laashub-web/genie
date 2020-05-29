@@ -20,7 +20,6 @@ package com.netflix.genie.web.scripts;
 import com.google.common.annotations.VisibleForTesting;
 import com.netflix.genie.web.exceptions.checked.ScriptExecutionException;
 import com.netflix.genie.web.exceptions.checked.ScriptNotConfiguredException;
-import io.micrometer.core.instrument.MeterRegistry;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,16 +40,13 @@ public abstract class ManagedScript {
     private final ScriptManager scriptManager;
     @Getter
     private final ManagedScriptBaseProperties properties;
-    private final MeterRegistry registry;
 
     protected ManagedScript(
         final ScriptManager scriptManager,
-        final ManagedScriptBaseProperties properties,
-        final MeterRegistry registry
+        final ManagedScriptBaseProperties properties
     ) {
         this.scriptManager = scriptManager;
         this.properties = properties;
-        this.registry = registry;
     }
 
     /**

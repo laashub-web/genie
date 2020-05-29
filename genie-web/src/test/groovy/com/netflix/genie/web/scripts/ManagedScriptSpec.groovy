@@ -94,7 +94,7 @@ class ManagedScriptSpec extends Specification {
             final TestProperties properties,
             final MeterRegistry registry
         ) {
-            super(scriptManager, properties, registry)
+            super(scriptManager, properties)
         }
     }
 

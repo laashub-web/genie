@@ -109,8 +109,7 @@ class LocalAgentLauncherImplSpec extends Specification {
             this.rpcInfo,
             this.dataServices,
             this.launchProperties,
-            this.executorFactory,
-            this.meterRegistry
+            this.executorFactory
         )
 
         then:

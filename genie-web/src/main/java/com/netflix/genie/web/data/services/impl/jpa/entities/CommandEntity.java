@@ -17,6 +17,8 @@
  */
 package com.netflix.genie.web.data.services.impl.jpa.entities;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.netflix.genie.common.dto.Command;
 import com.netflix.genie.web.exceptions.checked.PreconditionFailedException;
 import lombok.Getter;
@@ -41,8 +43,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -76,7 +76,7 @@ public class CommandEntity extends BaseEntity {
     @Column(name = "argument", length = 1024, nullable = false)
     @OrderColumn(name = "argument_order", nullable = false)
     @NotEmpty(message = "No executable arguments entered. At least one is required.")
-    private List<@NotBlank @Size(max = 1024) String> executable = new ArrayList<>();
+    private List<@NotBlank @Size(max = 1024) String> executable = Lists.newArrayList();
 
     @Basic(optional = false)
     @Column(name = "check_delay", nullable = false)
@@ -99,7 +99,7 @@ public class CommandEntity extends BaseEntity {
         }
     )
     @ToString.Exclude
-    private Set<FileEntity> configs = new HashSet<>();
+    private Set<FileEntity> configs = Sets.newHashSet();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -112,7 +112,7 @@ public class CommandEntity extends BaseEntity {
         }
     )
     @ToString.Exclude
-    private Set<FileEntity> dependencies = new HashSet<>();
+    private Set<FileEntity> dependencies = Sets.newHashSet();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -125,7 +125,7 @@ public class CommandEntity extends BaseEntity {
         }
     )
     @ToString.Exclude
-    private Set<TagEntity> tags = new HashSet<>();
+    private Set<TagEntity> tags = Sets.newHashSet();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -139,11 +139,11 @@ public class CommandEntity extends BaseEntity {
     )
     @OrderColumn(name = "application_order", nullable = false)
     @ToString.Exclude
-    private List<ApplicationEntity> applications = new ArrayList<>();
+    private List<ApplicationEntity> applications = Lists.newArrayList();
 
     @ManyToMany(mappedBy = "commands", fetch = FetchType.LAZY)
     @ToString.Exclude
-    private Set<ClusterEntity> clusters = new HashSet<>();
+    private Set<ClusterEntity> clusters = Sets.newHashSet();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -156,14 +156,7 @@ public class CommandEntity extends BaseEntity {
         }
     )
     @OrderColumn(name = "priority_order", nullable = false)
-    private List<CriterionEntity> clusterCriteria = new ArrayList<>();
-
-    /**
-     * Default Constructor.
-     */
-    public CommandEntity() {
-        super();
-    }
+    private List<CriterionEntity> clusterCriteria = Lists.newArrayList();
 
     /**
      * Set the executable and any default arguments for this command.
@@ -350,21 +343,5 @@ public class CommandEntity extends BaseEntity {
             );
         }
         return this.clusterCriteria.remove(priority);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(final Object o) {
-        return super.equals(o);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 }

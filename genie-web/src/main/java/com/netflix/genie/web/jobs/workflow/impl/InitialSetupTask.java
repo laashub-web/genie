@@ -18,6 +18,7 @@
 package com.netflix.genie.web.jobs.workflow.impl;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.netflix.genie.common.dto.ClusterCriteria;
 import com.netflix.genie.common.dto.JobRequest;
@@ -81,6 +82,7 @@ public class InitialSetupTask extends GenieBaseTask {
             final JobExecutionEnvironment jobExecEnv
                 = (JobExecutionEnvironment) context.get(JobConstants.JOB_EXECUTION_ENV_KEY);
             final String jobWorkingDirectory = jobExecEnv.getJobWorkingDir().getCanonicalPath();
+            @SuppressWarnings("PMD.CloseResource") // Not closed here
             final Writer writer = (Writer) context.get(JobConstants.WRITER_KEY);
             final String jobId = jobExecEnv
                 .getJobRequest()
@@ -533,7 +535,7 @@ public class InitialSetupTask extends GenieBaseTask {
      */
     @VisibleForTesting
     String tagsToString(final Set<String> tags) {
-        final ArrayList<String> sortedTags = new ArrayList<>(tags == null ? Collections.emptySet() : tags);
+        final List<String> sortedTags = Lists.newArrayList(tags == null ? Collections.emptySet() : tags);
         // Sort tags for the sake of determinism (e.g., tests)
         sortedTags.sort(Comparator.naturalOrder());
         final String joinedString = StringUtils.join(sortedTags, ',');

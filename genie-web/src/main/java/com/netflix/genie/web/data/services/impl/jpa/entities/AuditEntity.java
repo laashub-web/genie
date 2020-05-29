@@ -45,10 +45,12 @@ public class AuditEntity extends IdEntity implements AuditProjection {
 
     @Basic(optional = false)
     @Column(name = "created", nullable = false, updatable = false)
+    @Getter
     private Instant created = Instant.now();
 
     @Basic(optional = false)
     @Column(name = "updated", nullable = false)
+    @Getter
     private Instant updated = Instant.now();
 
     @Version
@@ -73,39 +75,5 @@ public class AuditEntity extends IdEntity implements AuditProjection {
     @PreUpdate
     protected void onUpdateBaseEntity() {
         this.updated = Instant.now();
-    }
-
-    /**
-     * Get when this entity was created.
-     *
-     * @return The created timestamps
-     */
-    public Instant getCreated() {
-        return this.created;
-    }
-
-    /**
-     * Get the time this entity was updated.
-     *
-     * @return The updated timestamp
-     */
-    public Instant getUpdated() {
-        return this.updated;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(final Object o) {
-        return super.equals(o);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 }

@@ -80,7 +80,7 @@ public final class EntityV3DtoConverters {
         jobProjection.getCommandName().ifPresent(builder::withCommandName);
         jobProjection.getGrouping().ifPresent(builder::withGrouping);
         jobProjection.getGroupingInstance().ifPresent(builder::withGroupingInstance);
-        setDtoMetadata(builder, jobProjection);
+        EntityV3DtoConverters.setDtoMetadata(builder, jobProjection);
 
         return builder.build();
     }
@@ -139,7 +139,7 @@ public final class EntityV3DtoConverters {
             .ifPresent(setupFileEntity -> builder.withSetupFile(setupFileEntity.getFile()));
         jobRequestProjection.getGrouping().ifPresent(builder::withGrouping);
         jobRequestProjection.getGroupingInstance().ifPresent(builder::withGroupingInstance);
-        setDtoMetadata(builder, jobRequestProjection);
+        EntityV3DtoConverters.setDtoMetadata(builder, jobRequestProjection);
 
         return builder.build();
     }

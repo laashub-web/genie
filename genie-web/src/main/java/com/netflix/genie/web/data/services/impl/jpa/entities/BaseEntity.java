@@ -148,20 +148,4 @@ public class BaseEntity extends UniqueIdEntity implements BaseProjection, SetupF
     public void setSetupFile(@Nullable final FileEntity setupFile) {
         this.setupFile = setupFile;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(final Object o) {
-        return super.equals(o);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }

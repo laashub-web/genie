@@ -75,13 +75,13 @@ public final class Util {
      */
     public static String[] getOptionArguments(final String[] args) {
         final List<String> temporary = new ArrayList<>(args.length);
-        for (int i = 0; i < args.length; i++) {
-            if (BARE_DOUBLE_DASH.equals(args[i])) {
+        for (final String arg : args) {
+            if (BARE_DOUBLE_DASH.equals(arg)) {
                 break;
             }
-            temporary.add(args[i]);
+            temporary.add(arg);
         }
-        return temporary.toArray(new String[temporary.size()]);
+        return temporary.toArray(new String[0]);
     }
 
     /**
@@ -101,6 +101,6 @@ public final class Util {
         for (i += 1; i < args.length; i++) {
             temporary.add(args[i]);
         }
-        return temporary.toArray(new String[temporary.size()]);
+        return temporary.toArray(new String[0]);
     }
 }

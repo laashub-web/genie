@@ -33,7 +33,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -484,7 +483,7 @@ public class CommandClientIntegrationTest extends GenieClientIntegrationTestBase
         commandClient.createCommand(command);
 
         // Test add Applications to command
-        final List<String> initialApplications = new ArrayList<>();
+        final List<String> initialApplications = Lists.newArrayList();
         initialApplications.add("foo");
         initialApplications.add("bar");
         initialApplications.add("pi");
@@ -505,7 +504,7 @@ public class CommandClientIntegrationTest extends GenieClientIntegrationTestBase
         Assert.assertEquals("foo", applications.get(0).getId().orElseThrow(IllegalArgumentException::new));
         Assert.assertEquals("bar", applications.get(1).getId().orElseThrow(IllegalArgumentException::new));
 
-        final List<String> updatedApplications = new ArrayList<>();
+        final List<String> updatedApplications = Lists.newArrayList();
         updatedApplications.add("foo");
         updatedApplications.add("pi");
 

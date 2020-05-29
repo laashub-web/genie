@@ -51,7 +51,6 @@ public class GRpcHeartBeatServiceImpl extends HeartBeatServiceGrpc.HeartBeatServ
     private final AgentConnectionTrackingService agentConnectionTrackingService;
     private final Map<String, AgentStreamRecord> activeStreamsMap = Maps.newHashMap();
     private final ScheduledFuture<?> sendHeartbeatsFuture;
-    private final MeterRegistry registry;
 
     /**
      * Constructor.
@@ -70,8 +69,7 @@ public class GRpcHeartBeatServiceImpl extends HeartBeatServiceGrpc.HeartBeatServ
             this::sendHeartbeats,
             HEART_BEAT_PERIOD_MILLIS
         );
-        this.registry = registry;
-        this.registry.gaugeMapSize(HEARTBEATING_GAUGE_NAME, Sets.newHashSet(), activeStreamsMap);
+        registry.gaugeMapSize(HEARTBEATING_GAUGE_NAME, Sets.newHashSet(), activeStreamsMap);
     }
 
     /**

@@ -37,6 +37,7 @@ public interface JobExecutionListener {
      * @param state the state entered
      */
     default void stateEntered(States state) {
+        // NOOP
     }
 
     /**
@@ -45,6 +46,7 @@ public interface JobExecutionListener {
      * @param state the state exiting
      */
     default void stateExited(States state) {
+        // NOOP
     }
 
     /**
@@ -53,6 +55,7 @@ public interface JobExecutionListener {
      * @param state the state whose action is invoked
      */
     default void beforeStateActionAttempt(States state) {
+        // NOOP
     }
 
     /**
@@ -62,18 +65,21 @@ public interface JobExecutionListener {
      * @param exception the exception thrown by the action, or null if there was no error
      */
     default void afterStateActionAttempt(States state, @Nullable Exception exception) {
+        // NOOP
     }
 
     /**
      * Invoked when the state machine starts running.
      */
     default void stateMachineStarted() {
+        // NOOP
     }
 
     /**
      * Invoked when the state machine stops.
      */
     default void stateMachineStopped() {
+        // NOOP
     }
 
     /**
@@ -83,6 +89,7 @@ public interface JobExecutionListener {
      * @param state the state whose action is skipped
      */
     default void stateSkipped(States state) {
+        // NOOP
     }
 
     /**
@@ -92,6 +99,7 @@ public interface JobExecutionListener {
      * @param exception the exception
      */
     default void fatalException(States state, FatalJobExecutionException exception) {
+        // NOOP
     }
 
     /**
@@ -102,6 +110,7 @@ public interface JobExecutionListener {
      * @param exception the exception
      */
     default void executionAborted(States state, FatalJobExecutionException exception) {
+        // NOOP
     }
 
     /**
@@ -112,5 +121,6 @@ public interface JobExecutionListener {
      * @param retryDelay the retry delay in milliseconds
      */
     default void delayedStateActionRetry(States state, final long retryDelay) {
+        // NOOP
     }
 }

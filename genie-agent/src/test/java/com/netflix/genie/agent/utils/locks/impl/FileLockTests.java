@@ -19,6 +19,7 @@ package com.netflix.genie.agent.utils.locks.impl;
 
 import com.netflix.genie.agent.execution.exceptions.LockException;
 import com.netflix.genie.agent.utils.locks.CloseableLock;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -30,6 +31,7 @@ import java.io.IOException;
  * @author standon
  * @since 4.0.0
  */
+@Slf4j
 public class FileLockTests {
 
     /**
@@ -62,6 +64,7 @@ public class FileLockTests {
             lock.lock();
             throw new LockException("dummy exception");
         } catch (LockException e) {
+            log.warn("Lock exception", e);
         }
 
         Mockito.verify(

@@ -21,7 +21,6 @@ import com.netflix.genie.common.external.dtos.v4.Command;
 import com.netflix.genie.common.external.dtos.v4.JobRequest;
 import com.netflix.genie.web.exceptions.checked.ResourceSelectionException;
 import com.netflix.genie.web.properties.CommandSelectorManagedScriptProperties;
-import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
@@ -41,17 +40,14 @@ public class CommandSelectorManagedScript extends ResourceSelectorScript<Command
 
     /**
      * Constructor.
-     *
-     * @param scriptManager The {@link ScriptManager} instance to use
+     *  @param scriptManager The {@link ScriptManager} instance to use
      * @param properties    The {@link CommandSelectorManagedScriptProperties} instance to use
-     * @param registry      The {@link MeterRegistry} instance to use
      */
     public CommandSelectorManagedScript(
         final ScriptManager scriptManager,
-        final CommandSelectorManagedScriptProperties properties,
-        final MeterRegistry registry
+        final CommandSelectorManagedScriptProperties properties
     ) {
-        super(scriptManager, properties, registry);
+        super(scriptManager, properties);
     }
 
     /**

@@ -22,7 +22,6 @@ import com.netflix.genie.common.external.dtos.v4.JobRequest;
 import com.netflix.genie.web.exceptions.checked.ResourceSelectionException;
 import com.netflix.genie.web.exceptions.checked.ScriptExecutionException;
 import com.netflix.genie.web.exceptions.checked.ScriptNotConfiguredException;
-import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
@@ -44,17 +43,14 @@ public class ResourceSelectorScript<R> extends ManagedScript {
 
     /**
      * Constructor.
-     *
-     * @param scriptManager The {@link ScriptManager} instance to use
+     *  @param scriptManager The {@link ScriptManager} instance to use
      * @param properties    The {@link ManagedScriptBaseProperties} instance to use
-     * @param registry      The {@link MeterRegistry} instance to use
      */
     protected ResourceSelectorScript(
         final ScriptManager scriptManager,
-        final ManagedScriptBaseProperties properties,
-        final MeterRegistry registry
+        final ManagedScriptBaseProperties properties
     ) {
-        super(scriptManager, properties, registry);
+        super(scriptManager, properties);
     }
 
     /**

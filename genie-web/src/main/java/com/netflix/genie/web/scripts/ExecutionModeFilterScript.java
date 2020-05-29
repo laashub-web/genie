@@ -24,7 +24,6 @@ import com.netflix.genie.common.dto.JobRequest;
 import com.netflix.genie.web.exceptions.checked.ScriptExecutionException;
 import com.netflix.genie.web.exceptions.checked.ScriptNotConfiguredException;
 import com.netflix.genie.web.properties.ExecutionModeFilterScriptProperties;
-import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
@@ -51,19 +50,16 @@ public class ExecutionModeFilterScript extends ManagedScript {
 
     /**
      * Constructor.
-     *
-     * @param scriptManager script manager
+     *  @param scriptManager script manager
      * @param properties    script properties
      * @param mapper        object mapper
-     * @param registry      meter registry
      */
     public ExecutionModeFilterScript(
         final ScriptManager scriptManager,
         final ExecutionModeFilterScriptProperties properties,
-        final ObjectMapper mapper,
-        final MeterRegistry registry
+        final ObjectMapper mapper
     ) {
-        super(scriptManager, properties, registry);
+        super(scriptManager, properties);
         this.objectMapper = mapper;
     }
 

@@ -19,7 +19,6 @@ package com.netflix.genie.common.internal.util;
 
 import com.google.common.collect.Lists;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -170,7 +169,7 @@ public final class RegexRuleSet {
      */
     public static class Builder {
 
-        private final LinkedList<Rule> rules = Lists.newLinkedList();
+        private final List<Rule> rules = Lists.newArrayList();
         private final Response defaultResponse;
 
         /**

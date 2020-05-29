@@ -132,8 +132,7 @@ class CommandSelectorManagedScriptIntegrationTest {
         this.scriptProperties = new CommandSelectorManagedScriptProperties();
         this.commandSelectorManagedScript = new CommandSelectorManagedScript(
             scriptManager,
-            this.scriptProperties,
-            this.meterRegistry
+            this.scriptProperties
         );
     }
 

@@ -453,6 +453,7 @@ public class JobServiceProtoConverter {
         return builder.build();
     }
 
+    @SuppressWarnings("PMD.UnnecessaryFullyQualifiedName") // This is harder to read without FQN
     private JobRequest toJobRequestDto(
         final com.netflix.genie.proto.JobMetadata protoJobMetadata,
         final com.netflix.genie.proto.ExecutionResourceCriteria protoExecutionResourceCriteria,

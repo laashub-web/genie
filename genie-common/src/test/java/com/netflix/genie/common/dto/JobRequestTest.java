@@ -61,6 +61,7 @@ class JobRequestTest {
         UUID.randomUUID().toString()
     );
 
+    @SuppressWarnings("PMD.UnusedPrivateMethod") // Method is used via @ParameterizedTest annotation below
     private static Stream<Arguments> provideCommandArgsConstructorCases() {
         return Stream.of(
             Arguments.of(null, null, null),

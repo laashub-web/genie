@@ -134,6 +134,7 @@ public class GRpcAgentFileStreamServiceImpl implements AgentFileStreamService {
                     }
                 } catch (NoSuchElementException | ConcurrentModificationException e) {
                     // Swallow. Not unexpected, collection and state may change.
+                    log.debug("Swallowing {}", e.getClass().getSimpleName(), e);
                 }
             }
         }

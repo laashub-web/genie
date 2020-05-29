@@ -83,7 +83,6 @@ public class GRpcAgentFileStreamServiceImpl
     private final Map<String, StreamBuffer> inProgressTransferBuffersMap = Maps.newConcurrentMap();
     private final JobDirectoryManifestProtoConverter converter;
     private final TaskScheduler taskScheduler;
-    private final MeterRegistry registry;
 
     /**
      * Constructor.
@@ -99,9 +98,8 @@ public class GRpcAgentFileStreamServiceImpl
     ) {
         this.converter = converter;
         this.taskScheduler = taskScheduler;
-        this.registry = registry;
-        this.registry.gaugeMapSize(PENDING_TRANSFERS_GAUGE_NAME, Sets.newHashSet(), pendingTransferBuffersMap);
-        this.registry.gaugeMapSize(IN_PROGRESS_TRANSFERS_GAUGE_NAME, Sets.newHashSet(), inProgressTransferBuffersMap);
+        registry.gaugeMapSize(PENDING_TRANSFERS_GAUGE_NAME, Sets.newHashSet(), pendingTransferBuffersMap);
+        registry.gaugeMapSize(IN_PROGRESS_TRANSFERS_GAUGE_NAME, Sets.newHashSet(), inProgressTransferBuffersMap);
     }
 
     /**
